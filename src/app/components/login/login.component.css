@@ -1,0 +1,75 @@
+.loginForm__page {
+  height: 100vh;
+  width: 100vw;
+}
+
+.loginForm {
+  height: max-content;
+  width: 25rem;
+  padding: 1rem;
+  margin-top: 12.5rem;
+  margin-inline: auto;
+  text-align: center;
+  background-color: rgba(155, 151, 151, 0.6);
+  border: 0.25rem solid rgb(3, 40, 252);
+  border-radius: 0.5rem;
+}
+
+.loginForm__title {
+  margin-block: 2.5rem;
+  font-size: 4rem;
+  font-weight: 600;
+}
+
+.loginForm__input {
+  display: flex;
+  justify-content: flex-end;
+}
+.loginForm__input > label {
+  width: 25%;
+  font-size: 1.25rem;
+  font-weight: 400;
+  align-self: center;
+}
+.loginForm__input > input {
+  width: 15rem;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border: 0.25rem solid rgb(3, 40, 252);
+  border-radius: 0.5rem;
+}
+
+.loginForm__error {
+  /* display: none; */
+  text-align: start;
+  color: red;
+}
+
+.loginForm__buttons {
+  width: 100%;
+}
+.loginBtn {
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+  margin: 1rem;
+  font-size: 1.25rem;
+  font-weight: 300;
+  background-color: rgb(3, 40, 252);
+  color: white;
+  border: 0.25rem solid rgb(3, 40, 252);
+  border-radius: 0.5rem;
+}
+
+.loginBtn:hover {
+  color: black;
+}
+.loginBtn:active {
+  scale: 0.95;
+}
+
+.loginForm__alternative {
+  cursor: pointer;
+  margin-block: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 300;
+}

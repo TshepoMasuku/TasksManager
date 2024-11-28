@@ -1,1 +1,43 @@
-<p>registration works!</p>
+<div class="registerForm__page">
+  <form class="registerForm">
+    <h2 class="registerForm__title">Sign Up</h2>
+
+    <div>
+      <div class="registerForm__input">
+        <label for="">Name</label>
+        <input type="text" required>
+      </div>
+      <span class="registerForm__error">display an Error here!</span>
+    </div>
+
+    <div>
+      <div class="registerForm__input">
+        <label for="">Email</label>
+        <input type="email" required>
+      </div>
+      <span class="registerForm__error">display an Error here!</span>
+    </div>
+
+    <div>
+      <div class="registerForm__input">
+        <label for="">Create Password</label>
+        <input type="password" required>
+      </div>
+      <span class="registerForm__error">display an Error here!</span>
+    </div>
+
+    <div>
+      <div class="registerForm__input">
+        <label for="">Confirm Password</label>
+        <input type="password" required>
+      </div>
+      <span class="registerForm__error">display an Error here!</span>
+    </div>
+
+    <div class="registerForm__buttons">
+      <button class="registerBtn" type="submit" (click)="goToTodoList()">Sign Up</button>
+    </div>
+
+    <h3 class="registerForm__alternative" (click)="goToSignup()">Login here!</h3>
+  </form>
+</div>

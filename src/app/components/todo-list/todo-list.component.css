@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Bokor&display=swap');
+
+:root {
+  --color-red: rgb(210, 88, 88);
+  --color-orange : rgb(245, 180, 100);
+  --color-yellow : rgb(240, 220, 100);
+  --color-purple: rgb(185, 100, 255);
+  --color-blue: rgb(3, 40, 255);
+  --color-grey: rgba(155, 151, 151, 0.6);
+}
+
+.todoList__page {
+  height: 100vh;
+  width: 100vw;
+}
+
+.todoList__titleContainer {
+  margin-block: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.todoList__title {
+  font-family: "Bokor", system-ui;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 5rem;
+  margin: 0px;
+  color: rgb(3, 40, 255);
+}
+
+.todoList__addTaskContainer {
+  height: max-content;
+  width: 50vw;
+  padding: 1rem;
+  margin-block: 1rem;
+  margin-inline: auto;
+  background-color: rgba(155, 151, 151, 0.6);
+  border: 0.25rem solid rgb(3, 40, 252);
+  border-radius: 0.5rem;
+  display: flex;
+}
+
+.todoList__textInput {
+  width: 60%;
+  padding: 0.5rem;
+  border: 0.25rem solid rgb(3, 40, 252);
+}
+
+.todoList__priorities {
+  border-block: 0.25rem solid rgb(3, 40, 252);
+}
+
+.DatePickerIcon {
+  padding-inline: 0.2rem;
+  border: 0.25rem solid rgb(3, 40, 252);
+}
+
+.Btn {
+  height: 3.5rem;
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: white;
+  border-radius: 0.5rem;
+}
+.Btn:hover {
+  color: black;
+}
+.Btn:active {
+  scale: 0.95;
+}
+
+.Btn-blue {
+  background-color: rgb(3, 40, 252);
+  border: 0.25rem solid rgb(3, 40, 252);
+}
+.addBtn {
+  margin-left: 1rem;
+  border-radius: 0px;
+}
+
+.todoList__tasksContainer {
+  height: max-content;
+  width: 60vw;
+  padding: 1rem;
+  margin-block: 1rem;
+  margin-inline: auto;
+  background-color: rgba(155, 151, 151, 0.6);
+  border-radius: 0.5rem;
+}

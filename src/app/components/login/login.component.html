@@ -1,1 +1,27 @@
-<p>login works!</p>
+<div class="loginForm__page">
+  <form class="loginForm">
+    <h2 class="loginForm__title">Sign In</h2>
+
+    <div>
+      <div class="loginForm__input">
+        <label for="">Email</label>
+        <input type="email" required>
+      </div>
+      <span class="loginForm__error">display an Error here!</span>
+    </div>
+
+    <div>
+      <div class="loginForm__input">
+        <label for="">Password</label>
+        <input type="password" required>
+      </div>
+      <span class="loginForm__error">display an Error here!</span>
+    </div>
+
+    <div class="loginForm__buttons">
+      <button class="loginBtn" type="submit" (click)="goToTodoList()">Sign In</button>
+    </div>
+
+    <h3 class="loginForm__alternative" (click)="goToRegistration()">Register here!</h3>
+  </form>
+</div>

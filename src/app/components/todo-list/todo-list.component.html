@@ -1,1 +1,21 @@
-<p>todo-list works!</p>
+<div class="todoList__page">
+  <div class="todoList__titleContainer">
+    <h2 class="todoList__title">Task Manager</h2>
+  </div>
+
+  <div class="todoList__addTaskContainer">
+    <input type="text" class="todoList__textInput">
+    <select class="todoList__priorities">
+      <option>Choose Task Priority...</option>
+      <option>Low</option>
+      <option>Medium</option>
+      <option>High</option>
+    </select>
+    <img src="/assets/calendar_month_48dp.svg" class="DatePickerIcon" (click)="showCalendar()">
+    <button class="Btn Btn-blue addBtn">Add</button>
+  </div>
+  
+  <div class="todoList__tasksContainer">
+    <app-task></app-task>
+  </div>
+</div>

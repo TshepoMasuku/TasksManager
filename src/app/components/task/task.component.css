@@ -1,0 +1,80 @@
+.task__Container {
+  height: max-content;
+  width: 99%;
+  margin-block: 1rem;
+  margin-inline: auto;
+  background-color: rgb(185, 100, 255);
+  border-radius: 1rem;
+}
+
+.task__topSection {
+  padding: 0.75rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.task__titleContainer {
+  width: 55%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.task__title {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.task__BtnContainer {
+  width: 15rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.Btn {
+  height: 3.5rem;
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: white;
+  border-radius: 0.5rem;
+}
+.Btn:hover {
+  color: black;
+}
+.Btn:active {
+  scale: 0.95;
+}
+
+.Btn-blue {
+  background-color: rgb(3, 40, 252);
+  border: 0.25rem solid rgb(3, 40, 252);
+}
+.Btn-red {
+  background-color: rgb(241, 64, 64);
+  border: 0.25rem solid rgb(241, 64, 64);
+}
+
+hr {
+  width: 88%;
+  border: 1px solid black;
+}
+
+.task__deadline {
+  padding-block: 0.75rem;
+  display: flex;
+  justify-content: center;
+}
+
+.deadline__label {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-right: 1rem;
+}
+
+.deadline__date {
+  font-size: 1rem;
+  font-weight: 500;
+}
