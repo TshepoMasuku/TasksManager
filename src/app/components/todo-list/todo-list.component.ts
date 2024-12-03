@@ -1,41 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgClass, NgFor, NgIf } from '@angular/common';
-import { ChangeDetectionStrategy } from '@angular/core';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDatepickerModule, MatDatepickerInput, MatDatepickerToggle, MatDatepicker } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { NativeDateAdapter } from '@angular/material/core';
-// import { provideNativeDateAdapter } from '@angular/material/core';
+import { provideNativeDateAdapter, NativeDateAdapter, MatNativeDateModule } from '@angular/material/core';
+import {MatCardModule} from '@angular/material/card';
 
 @Component({
   selector: 'app-todo-list',
   standalone: true,
-  imports: [ FormsModule,NgFor,NgClass,NgIf, 
-    // MatFormFieldModule,MatInputModule,MatDatepickerModule,
+  imports: [ FormsModule,NgFor,NgClass,NgIf,
+    MatFormFieldModule,MatInputModule,MatDatepickerModule,MatNativeDateModule,
+    MatDatepickerToggle,MatDatepicker,MatDatepickerInput,MatCardModule,
   ],
   templateUrl: './todo-list.component.html',
   styleUrl: './todo-list.component.css',
-  // providers: [provideNativeDateAdapter()],
-  // providers: [ {provide: NativeDateAdapter(), useClass: NativeDateAdapter} ],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [provideNativeDateAdapter(),NativeDateAdapter,MatDatepickerModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodoListComponent {
   tasksArray: any = [];
   taskTitle: string = "";
   taskPriority: string = "";
-  taskDueDate: string = "";  // date-format: "dd/mm/yyyy";
+  taskDueDate: string = "";
   showTaskEditForm: boolean = false;
+  // These variables below, track & save new edited changes made to a TASK.
   taskTitleEdited: string = "";
   taskPriorityEdited: string = "";
-  taskDueDateEdited: string = "";  // date-format: "dd/mm/yyyy";
+  taskDueDateEdited: string = "";
+  selected = model<Date | null>(null);
   constructor() {}
-
-  showCalendar() {
-    this.taskDueDate = Date();
-    // console.log('this.taskDueDate :>> ', this.taskDueDate);
-    alert("PICK YOUR TASK'S DUE DATE.(OPTIONAL)");
-  }
 
   addTask() {
     const currentTask = {
@@ -45,9 +40,11 @@ export class TodoListComponent {
       taskDueDate: this.taskDueDate,
       showTaskEditForm: this.showTaskEditForm,
     };
+    console.log('currentTask :>> ', currentTask);
     this.tasksArray.push(currentTask);
     this.clearAddTaskInputs();
   }
+
   clearAddTaskInputs() {
     // This clears all the inputs entered by the user, after adding a TASK.
     this.taskTitle = "";
@@ -63,11 +60,15 @@ export class TodoListComponent {
   }
 
   editTask(task: any) {
+    // This hides/closes the Task Edit Form.
     task.showTaskEditForm = !task.showTaskEditForm;
   }
+
   cancelEditedTask(task: any) {
+    // This hides/closes the Task Edit Form.
     task.showTaskEditForm = !task.showTaskEditForm;
   }
+
   saveEditedTask(task: any) {
     // This Method SAVES the edited changes from the TaskEditForm for this current task.
     // This hides/closes the Task Edit Form. After all the user changes/edits have been saved accordingly.
@@ -77,7 +78,6 @@ export class TodoListComponent {
     const currentTaskDetails = this.tasksArray.filter((item: any) => {
       if(item.id === task.id) return item
     });
-    // console.log('current Task Details :>> ', currentTaskDetails[0]);
 
     // Create const newTaskDetails, to save & replace the previously saved task in this.tasksArray.
     const newTaskDetails: object = {
@@ -86,7 +86,6 @@ export class TodoListComponent {
       taskPriority: (this.taskPriorityEdited !== '') ? (this.taskPriorityEdited) : (currentTaskDetails[0].taskPriority), 
       taskDueDate: (this.taskDueDateEdited !== '') ? (this.taskDueDateEdited) : (currentTaskDetails[0].taskDueDate),
     };
-    // console.log('new Task Details :>> ', newTaskDetails);
     const newTasksArray: any = [];
     for(let taskItem of this.tasksArray) {
       if(taskItem.id === task.id) {
@@ -96,9 +95,9 @@ export class TodoListComponent {
       }
     }
     this.tasksArray = newTasksArray;
-    // console.log('this.tasksArray :>> ', this.tasksArray);
     this.clearTaskEditFormInputs();
   }
+
   clearTaskEditFormInputs() {
     // This clears all the saved inputs entered by the user, after editing a TASK.
     this.taskTitleEdited = "";
@@ -108,10 +107,13 @@ export class TodoListComponent {
 
   taskTitleChanged(event: any) {
     this.taskTitleEdited = event.target.value;
-    // console.log('taskTitleChanged() --> event.target.value :>> ', event.target.value, '&& this.taskTitleEdited :>> ', this.taskTitleEdited);
   }
+
   taskPriorityChanged(event: any) {
     this.taskPriorityEdited = event.target.value;
-    // console.log('taskPriorityChanged() --> event.target.value :>> ', event.target.value, '&& this.taskPriorityEdited :>> ', this.taskPriorityEdited);
+  }
+
+  taskDueDateChanged(event: any) {
+    this.taskDueDateEdited = event.target.value;
   }
 }
