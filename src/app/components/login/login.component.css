@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bokor&display=swap');
+
 .loginForm__page {
   height: 100vh;
   width: 100vw;
@@ -17,8 +19,11 @@
 
 .loginForm__title {
   margin-block: 2.5rem;
-  font-size: 4rem;
-  font-weight: 600;
+  font-family: "Bokor", system-ui;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 5rem;
+  color: rgb(3, 40, 255);
 }
 
 .loginForm__input {

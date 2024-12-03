@@ -2,20 +2,79 @@
   <div class="todoList__titleContainer">
     <h2 class="todoList__title">Task Manager</h2>
   </div>
-
+  
   <div class="todoList__addTaskContainer">
-    <input type="text" class="todoList__textInput">
-    <select class="todoList__priorities">
-      <option>Choose Task Priority...</option>
-      <option>Low</option>
-      <option>Medium</option>
-      <option>High</option>
-    </select>
-    <img src="/assets/calendar_month_48dp.svg" class="DatePickerIcon" (click)="showCalendar()">
-    <button class="Btn Btn-blue addBtn">Add</button>
+    <div class="todoList__topInputContainer">
+      <input 
+        type="text" required
+        placeholder="Enter a task here!"
+        [(ngModel)]="taskTitle"
+        class="todoList__textInput"
+      >
+      <button type="submit" class="Btn Btn--blue addTaskBtn" (click)="addTask()">Add</button>
+    </div>
+    <div class="todoList__bottomInputContainer">
+      <select class="chooseTaskPriority" [(ngModel)]="taskPriority">
+        <option value="" disabled selected>Choose Task Priority...</option>
+        <option value="lowPriority">Low</option>
+        <option value="mediumPriority">Medium</option>
+        <option value="highPriority">High</option>
+      </select>
+      <img src="/assets/calendar_month_48dp.svg" class="DatePickerIcon" (click)="showCalendar()">
+      <!--  <mat-form-field class="DatePickerIcon">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>   -->
+    </div>
   </div>
   
-  <div class="todoList__tasksContainer">
-    <app-task></app-task>
+  <div [ngClass]="(tasksArray.length === 0) ? ('hidden') : ('todoList__tasksContainer')">
+    <div *ngFor="let task of tasksArray.reverse()" class="task__Container bgTask-{{task.taskPriority}}">
+      <div *ngIf="!task.showTaskEditForm">
+        <div class="task__topSection">
+          <div class="task__titleContainer">
+            <div class="task__title">{{task.taskTitle}}</div>
+          </div>
+          <div class="task__BtnContainer">
+            <button class="Btn Btn--blue" (click)="editTask(task)">Edit</button>
+            <button class="Btn Btn--red" (click)="deleteTask(task)">Delete</button>
+          </div>
+        </div>
+        <div *ngIf="task.taskDueDate !== ''">
+          <hr>
+          <div class="task__deadline">
+            <span class="deadline__label">Task Due Date: </span>
+            <span class="deadline__date">{{task.taskDueDate}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="task.showTaskEditForm" class="taskEditForm__Container">
+        <div class="taskEditForm__topInputContainer">
+          <input 
+            type="text" required
+            placeholder="Enter a task here!"
+            value={{task.taskTitle}}
+            (change)="taskTitleChanged($event)"
+            class="taskEditForm__editTaskTitle"
+          >
+          <button type="submit" class="Btn Btn--blue saveTaskBtn" (click)="saveEditedTask(task)">Save</button>
+          <button class="Btn Btn--red cancelTaskBtn" (click)="cancelEditedTask(task)">Cancel</button>
+        </div>
+        <div class="taskEditForm__bottomInputContainer">
+          <select class="chooseTaskPriority" value={{task.taskPriority}} (change)="taskPriorityChanged($event)">
+            <option value="" disabled selected>Choose Task Priority...</option>
+            <option value="lowPriority">Low</option>
+            <option value="mediumPriority">Medium</option>
+            <option value="highPriority">High</option>
+          </select>
+          <img src="/assets/calendar_month_48dp.svg" class="DatePickerIcon">
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
