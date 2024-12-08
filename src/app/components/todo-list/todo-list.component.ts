@@ -1,18 +1,17 @@
-import { Component, ChangeDetectionStrategy, model } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgClass, NgFor, NgIf } from '@angular/common';
-import { MatDatepickerModule, MatDatepickerInput, MatDatepickerToggle, MatDatepicker } from '@angular/material/datepicker';
+import { DatePipe, NgClass, NgFor, NgIf } from '@angular/common';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { provideNativeDateAdapter, NativeDateAdapter, MatNativeDateModule } from '@angular/material/core';
-import {MatCardModule} from '@angular/material/card';
+
 
 @Component({
   selector: 'app-todo-list',
   standalone: true,
-  imports: [ FormsModule,NgFor,NgClass,NgIf,
-    MatFormFieldModule,MatInputModule,MatDatepickerModule,MatNativeDateModule,
-    MatDatepickerToggle,MatDatepicker,MatDatepickerInput,MatCardModule,
+  imports: [ FormsModule,NgFor,NgClass,NgIf,DatePipe,
+    MatNativeDateModule,MatFormFieldModule,MatInputModule,MatDatepickerModule,
   ],
   templateUrl: './todo-list.component.html',
   styleUrl: './todo-list.component.css',
@@ -29,18 +28,17 @@ export class TodoListComponent {
   taskTitleEdited: string = "";
   taskPriorityEdited: string = "";
   taskDueDateEdited: string = "";
-  selected = model<Date | null>(null);
+
   constructor() {}
 
   addTask() {
     const currentTask = {
-      id: "task"+this.tasksArray.length,
+      id: "task" + this.tasksArray.length,
       taskTitle: this.taskTitle,
       taskPriority: this.taskPriority,
       taskDueDate: this.taskDueDate,
       showTaskEditForm: this.showTaskEditForm,
     };
-    console.log('currentTask :>> ', currentTask);
     this.tasksArray.push(currentTask);
     this.clearAddTaskInputs();
   }
@@ -67,6 +65,7 @@ export class TodoListComponent {
   cancelEditedTask(task: any) {
     // This hides/closes the Task Edit Form.
     task.showTaskEditForm = !task.showTaskEditForm;
+    this.clearTaskEditFormInputs();
   }
 
   saveEditedTask(task: any) {
@@ -111,9 +110,5 @@ export class TodoListComponent {
 
   taskPriorityChanged(event: any) {
     this.taskPriorityEdited = event.target.value;
-  }
-
-  taskDueDateChanged(event: any) {
-    this.taskDueDateEdited = event.target.value;
   }
 }
