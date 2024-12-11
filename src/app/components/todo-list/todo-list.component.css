@@ -87,8 +87,7 @@
 
 .DatePickerFormField {
   width: 50%;
-  height: 4.5rem;
-  padding-inline: 0.2rem;
+  height: 5rem;
   border: 0.25rem solid rgb(3, 40, 252);
 }
 

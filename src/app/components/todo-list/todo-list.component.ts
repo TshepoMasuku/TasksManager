@@ -24,23 +24,56 @@ export class TodoListComponent {
   taskPriority: string = "";
   taskDueDate: string = "";
   showTaskEditForm: boolean = false;
+
   // These variables below, track & save new edited changes made to a TASK.
   taskTitleEdited: string = "";
   taskPriorityEdited: string = "";
   taskDueDateEdited: string = "";
 
+  // Set the minimum date to the next day(tomorrow) and the maximum date to December 31st a year in the future.
+  private readonly _currentYear = new Date().getFullYear();
+  private readonly _currentMonth = new Date().getMonth();
+  private readonly _currentDay = new Date().getDate();
+  // readonly minmaxDate = new Date(Year, Month, Day);
+  readonly minDate = new Date(this._currentYear, this._currentMonth, this._currentDay);
+  readonly maxDate = new Date(this._currentYear + 1, 11, 31);
+
   constructor() {}
+  ngOnInit() {
+    this.tasksArray = [
+      {
+        id: 'Task Created @ Mon Dec 09 2024 19:48:66',
+        taskTitle: 'Manage Tasks',
+        taskPriority: 'highPriority',
+        taskDueDate: 'Sat Dec 21 2024 11:11:11 GMT+0200 (South Africa Standard Time)',
+        showTaskEditForm: false
+      },{
+        id: 'Task Created @ Mon Dec 09 2024 19:48:99',
+        taskTitle: 'Check check!',
+        taskPriority: 'mediumPriority',
+        taskDueDate: 'Wed Dec 18 2024 22:22:22 GMT+0200 (South Africa Standard Time)',
+        showTaskEditForm: false
+      }
+    ];
+  }
+
+  // Check if this Tracking Expression method is really needed.
+  trackByTaskId(index: number, task: any) {
+    return task.id;
+  };
 
   addTask() {
     const currentTask = {
-      id: "task" + this.tasksArray.length,
+      id: "Task Created @ " + Date(),
       taskTitle: this.taskTitle,
       taskPriority: this.taskPriority,
       taskDueDate: this.taskDueDate,
       showTaskEditForm: this.showTaskEditForm,
     };
-    this.tasksArray.push(currentTask);
-    this.clearAddTaskInputs();
+    if (this.taskTitle.trim() !== "") {
+      this.tasksArray.push(currentTask);
+      this.clearAddTaskInputs();
+    }
   }
 
   clearAddTaskInputs() {
@@ -48,6 +81,7 @@ export class TodoListComponent {
     this.taskTitle = "";
     this.taskPriority = "";
     this.taskDueDate = "";
+    console.log('this.tasksArray :>> ', this.tasksArray);
   }
 
   deleteTask(task: any) {
@@ -110,5 +144,9 @@ export class TodoListComponent {
 
   taskPriorityChanged(event: any) {
     this.taskPriorityEdited = event.target.value;
+  }
+
+  taskDueDateChanged(event: any) {
+    this.taskDueDateEdited = event.target.value;
   }
 }

@@ -5,7 +5,7 @@
   
   <div class="todoList__addTaskContainer">
     <div class="todoList__topInputContainer">
-      <input type="text"  placeholder="Enter a task here!" [(ngModel)]="taskTitle" class="todoList__textInput">
+      <input type="text" placeholder="Enter a task here!" [(ngModel)]="taskTitle" class="todoList__textInput">
       <button type="submit" class="Btn Btn--blue addTaskBtn" (click)="addTask()">Add</button>
     </div>
     <div class="todoList__bottomInputContainer">
@@ -16,17 +16,17 @@
         <option value="highPriority">High</option>
       </select>
       <mat-form-field class="DatePickerFormField">
-        <mat-label>Choose a date</mat-label>
-        <input matInput [matDatepicker]="picker" [(ngModel)]="taskDueDate">
+        <mat-label>Task Due Date</mat-label>
+        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker_default" [(ngModel)]="taskDueDate">
         <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <mat-datepicker-toggle matIconSuffix [for]="picker_default"></mat-datepicker-toggle>
+        <mat-datepicker #picker_default></mat-datepicker>
       </mat-form-field>
     </div>
   </div>
 
   <div [ngClass]="(tasksArray.length === 0) ? ('hidden') : ('todoList__tasksContainer')">
-    <div *ngFor="let task of tasksArray.reverse()" class="task__Container bgTask-{{task.taskPriority}}">
+    <div *ngFor="let task of tasksArray.reverse(); let ndx = index; trackBy: trackByTaskId" class="task__Container bgTask-{{task.taskPriority}}">
       <div *ngIf="!task.showTaskEditForm">
         <div class="task__topSection">
           <div class="task__titleContainer">
@@ -48,7 +48,7 @@
 
       <div *ngIf="task.showTaskEditForm" class="taskEditForm__Container">
         <div class="taskEditForm__topInputContainer">
-          <input 
+          <input
             type="text"
             placeholder="Enter a task here!"
             value={{task.taskTitle}}
@@ -66,11 +66,11 @@
             <option value="highPriority">High</option>
           </select>
           <mat-form-field class="DatePickerFormField">
-            <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker" [(ngModel)]="taskDueDateEdited">
+            <mat-label>Task Due Date</mat-label>
+            <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="ndx" (dateChange)="taskDueDateChanged($event)">
             <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <mat-datepicker-toggle matIconSuffix [for]="ndx"></mat-datepicker-toggle>
+            <mat-datepicker #ndx></mat-datepicker> <!-- #picker || #picker_ndx || #picker{{task.id}} || id="{{'TASK'+ndx}}" -->
           </mat-form-field>
         </div>
       </div>
