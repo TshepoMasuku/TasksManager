@@ -26,7 +26,10 @@
   </div>
 
   <div [ngClass]="(tasksArray.length === 0) ? ('hidden') : ('todoList__tasksContainer')">
-    <div *ngFor="let task of tasksArray.reverse(); let ndx = index; trackBy: trackByTaskId" class="task__Container bgTask-{{task.taskPriority}}">
+    <div 
+      *ngFor="let task of tasksArray.reverse(); let ndx = index; trackBy: trackByTaskId" 
+      id="TASK{{ndx}}" class="task__Container bgTask-{{task.taskPriority}}"
+    >
       <div *ngIf="!task.showTaskEditForm">
         <div class="task__topSection">
           <div class="task__titleContainer">
@@ -67,10 +70,16 @@
           </select>
           <mat-form-field class="DatePickerFormField">
             <mat-label>Task Due Date</mat-label>
-            <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="ndx" (dateChange)="taskDueDateChanged($event)">
+            <input 
+              matInput [matDatepicker]="pickerP1"
+              [min]="minDate" [max]="maxDate"
+              value="{{ task.taskDueDate | date: 'M/d/yyyy' }}"
+              (dateChange)="taskDueDateChanged($event)"
+            >
             <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="ndx"></mat-datepicker-toggle>
-            <mat-datepicker #ndx></mat-datepicker> <!-- #picker || #picker_ndx || #picker{{task.id}} || id="{{'TASK'+ndx}}" -->
+            <mat-datepicker-toggle matIconSuffix [for]="pickerP1"></mat-datepicker-toggle>
+            <mat-datepicker #pickerP1></mat-datepicker>
+            <!-- #picker || #ndx || #picker{{task.id|idx}} || <input value="" not working/> -->
           </mat-form-field>
         </div>
       </div>

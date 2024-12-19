@@ -52,7 +52,7 @@ export class TodoListComponent {
         taskTitle: 'Check check!',
         taskPriority: 'mediumPriority',
         taskDueDate: 'Wed Dec 18 2024 22:22:22 GMT+0200 (South Africa Standard Time)',
-        showTaskEditForm: false
+        showTaskEditForm: true
       }
     ];
   }

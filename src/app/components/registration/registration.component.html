@@ -1,41 +1,105 @@
 <div class="registerForm__page">
-  <form class="registerForm">
+  <form class="registerForm" [formGroup]="registerForm" (ngSubmit)="signup()">
     <h2 class="registerForm__title">Sign Up</h2>
 
     <div>
       <div class="registerForm__input">
-        <label for="">Name</label>
-        <input type="text" required>
+        <label class="registerForm__inputLabel">Name</label>
+        <input
+          class="registerForm__inputField" id="name" formControlName="name" type="text"
+          [ngClass]="(registerForm.get('name')?.invalid && registerForm.get('name')?.touched) ?
+            ('inputField--hasError') : ('inputField--noError')"
+        >
       </div>
-      <span class="registerForm__error">display an Error here!</span>
+      <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched">
+        <small class="registerForm__error" *ngIf="registerForm.get('name')?.errors?.['required']">Enter Your Name</small>
+        <small class="registerForm__error" *ngIf="registerForm.get('password')?.errors?.['minlength']">
+          Name can't be shorter than 2 characters!
+        </small>
+        <br *ngIf="registerForm.get('password')?.errors?.['minlength']">
+        <small class="registerForm__error" *ngIf="registerForm.get('password')?.errors?.['maxlength']">
+          Name can't be longer than 32 characters!
+        </small>
+        <small class="registerForm__error" *ngIf="registerForm.get('name')?.errors?.['pattern']">
+          Name must be Capitalized and have no number/special characters.
+        </small>
+      </div>
     </div>
 
     <div>
       <div class="registerForm__input">
-        <label for="">Email</label>
-        <input type="email" required>
+        <label class="registerForm__inputLabel">Email</label>
+        <input
+          class="registerForm__inputField" id="email" formControlName="email" type="email"
+          [ngClass]="(registerForm.get('email')?.invalid && registerForm.get('email')?.touched) ?
+            ('inputField--hasError') : ('inputField--noError')"
+        >
       </div>
-      <span class="registerForm__error">display an Error here!</span>
+      <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+        <small class="registerForm__error" *ngIf="registerForm.get('email')?.errors?.['required']">Enter email</small>
+        <small class="registerForm__error" *ngIf="registerForm.get('email')?.errors?.['email']">Invalid email</small>
+      </div>
     </div>
 
     <div>
       <div class="registerForm__input">
-        <label for="">Create Password</label>
-        <input type="password" required>
+        <label class="registerForm__inputLabel">Create Password</label>
+        <input
+          class="registerForm__inputField" id="password" formControlName="password" type="password--"
+          [ngClass]="(registerForm.get('password')?.invalid && registerForm.get('password')?.touched) ?
+            ('inputField--hasError') : ('inputField--noError')"
+        >
       </div>
-      <span class="registerForm__error">display an Error here!</span>
+      <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+        <small class="registerForm__error" *ngIf="registerForm.get('password')?.errors?.['required']">
+          Password is required!
+        </small>
+        <small class="registerForm__error" *ngIf="registerForm.get('password')?.errors?.['minlength']">
+          Password should be longer than 8 characters!
+        </small>
+        <br *ngIf="registerForm.get('password')?.errors?.['minlength']">
+        <small class="registerForm__error" *ngIf="registerForm.get('password')?.errors?.['maxlength']">
+          Password can't be longer than 99 characters!
+        </small>
+        <small class="registerForm__error" *ngIf="registerForm.get('password')?.errors?.['pattern']">
+          Password must include at least 1 uppercase letter, 1 lowercase letter, 1 digit character and 1 special character.
+        </small>
+      </div>
     </div>
 
     <div>
       <div class="registerForm__input">
-        <label for="">Confirm Password</label>
-        <input type="password" required>
+        <label class="registerForm__inputLabel">Confirm Password</label>
+        <input
+          class="registerForm__inputField" id="confirmPassword" formControlName="confirmPassword" type="password--"
+          [ngClass]="(registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched) ?
+            ('inputField--hasError') : ('inputField--noError')"
+        >
       </div>
-      <span class="registerForm__error">display an Error here!</span>
+      <div *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched">
+        <small class="registerForm__error" *ngIf="registerForm.get('confirmPassword')?.errors?.['required']">
+          Confirmation Password is required!
+        </small>
+        <small class="registerForm__error" *ngIf="registerForm.get('confirmPassword')?.errors?.['minlength']">
+          Confirmation Password should match with the above Password!
+        </small>
+        <small class="registerForm__error" *ngIf="registerForm.get('confirmPassword')?.errors?.['maxlength']">
+          Confirmation Password should match with the above Password!
+        </small>
+        <small class="registerForm__error" *ngIf="registerForm.get('confirmPassword')?.errors?.['not_matching']">
+          Confirmation Password doesn't match with the above Password!
+        </small>
+      </div>
     </div>
 
     <div class="registerForm__buttons">
-      <button class="registerBtn" type="submit" (click)="goToTodoList()">Sign Up</button>
+      <button 
+        [ngClass]="registerForm.invalid ? 'registerBtn--inActive':'registerBtn'"
+        [disabled]="registerForm.invalid"
+        type="submit" 
+      >
+        Sign Up
+      </button>
     </div>
 
     <h3 class="registerForm__alternative" (click)="goToSignup()">Login here!</h3>

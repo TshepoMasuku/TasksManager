@@ -1,25 +1,55 @@
 <div class="loginForm__page">
-  <form class="loginForm">
+  <form class="loginForm" [formGroup]="loginForm" (ngSubmit)="signin()">
     <h2 class="loginForm__title">Sign In</h2>
 
     <div>
       <div class="loginForm__input">
-        <label for="">Email</label>
-        <input type="email" required>
+        <label class="loginForm__inputLabel">Email</label>
+        <input 
+          class="loginForm__inputField" id="email" formControlName="email" type="email"
+          [ngClass]="(loginForm.get('email')?.invalid && loginForm.get('email')?.touched) ?
+            ('inputField--hasError') : ('inputField--noError')"
+        >
       </div>
-      <span class="loginForm__error">display an Error here!</span>
+      <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+        <small class="loginForm__errorMessages" *ngIf="loginForm.get('email')?.errors?.['required']">Enter email</small>
+        <small class="loginForm__errorMessages" *ngIf="loginForm.get('email')?.errors?.['email']">Invalid email</small>
+      </div>
     </div>
 
     <div>
       <div class="loginForm__input">
-        <label for="">Password</label>
-        <input type="password" required>
+        <label class="loginForm__inputLabel">Password</label>
+        <input
+          class="loginForm__inputField" id="password" formControlName="password" type="password--"
+          [ngClass]="(loginForm.get('password')?.invalid && loginForm.get('password')?.touched) ?
+            ('inputField--hasError') : ('inputField--noError')"
+        >
       </div>
-      <span class="loginForm__error">display an Error here!</span>
+      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+        <small class="loginForm__errorMessages" *ngIf="loginForm.get('password')?.errors?.['required']">Enter password</small>
+        <small class="loginForm__errorMessages" *ngIf="loginForm.get('password')?.errors?.['password']">Invalid password</small>
+        <small class="loginForm__errorMessages" *ngIf="loginForm.get('password')?.errors?.['minlength']">
+          Password should be longer than 8 characters!
+        </small>
+        <br *ngIf="loginForm.get('password')?.errors?.['minlength']">
+        <small class="loginForm__errorMessages" *ngIf="loginForm.get('password')?.errors?.['maxlength']">
+          Password can't be longer than 99 characters!
+        </small>
+        <small class="loginForm__errorMessages" *ngIf="loginForm.get('password')?.errors?.['pattern']">
+          Password must include at least 1 uppercase letter, 1 lowercase letter, 1 digit character and 1 special character.
+        </small>
+      </div>
     </div>
 
     <div class="loginForm__buttons">
-      <button class="loginBtn" type="submit" (click)="goToTodoList()">Sign In</button>
+      <button 
+        [ngClass]="loginForm.invalid ? 'loginBtn--inActive':'loginBtn'"
+        [disabled]="loginForm.invalid"
+        type="submit"
+      >
+        Sign In
+      </button>
     </div>
 
     <h3 class="loginForm__alternative" (click)="goToRegistration()">Register here!</h3>

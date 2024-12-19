@@ -30,22 +30,27 @@
   display: flex;
   justify-content: flex-end;
 }
-.loginForm__input > label {
+.loginForm__inputLabel {
   width: 25%;
   font-size: 1.25rem;
   font-weight: 400;
   align-self: center;
 }
-.loginForm__input > input {
+.loginForm__inputField {
   width: 15rem;
   padding: 0.5rem;
   margin: 0.5rem;
-  border: 0.25rem solid rgb(3, 40, 252);
   border-radius: 0.5rem;
 }
 
-.loginForm__error {
-  /* display: none; */
+.inputField--noError {
+  border: 0.25rem solid rgb(3, 40, 252);
+}
+.inputField--hasError {
+  border: 0.25rem solid red;
+}
+.loginForm__errorMessages {
+  font-size: 12px;
   text-align: start;
   color: red;
 }
@@ -72,9 +77,23 @@
   scale: 0.95;
 }
 
+.loginBtn--inActive {
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+  margin: 1rem;
+  font-size: 1.25rem;
+  font-weight: 300;
+  background-color: rgb(147, 156, 203);
+  color: white;
+  border: 0.15rem solid rgb(3, 40, 252);
+  border-radius: 0.5rem;
+}
+
 .loginForm__alternative {
   cursor: pointer;
-  margin-block: 1.5rem;
+  color: rgb(3, 40, 252);
+  width: 150px;
+  margin: 1.5rem auto;
   font-size: 1.25rem;
   font-weight: 300;
 }
