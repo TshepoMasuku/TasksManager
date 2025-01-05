@@ -49,7 +49,7 @@
 .inputField--hasError {
   border: 0.25rem solid red;
 }
-.registerForm__error {
+.registerForm__errorMessages {
   font-size: 12px;
   text-align: start;
   color: red;

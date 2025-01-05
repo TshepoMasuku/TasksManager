@@ -8,6 +8,6 @@ export const routes: Routes = [
   {path:"", redirectTo:"/login", pathMatch:"full"},
   {path:"login", component: LoginComponent},
   {path:"register", component: RegistrationComponent},
-  {path:"todo-list", component: TodoListComponent},
+  {path:"todo-list", component: TodoListComponent, canActivate: [], canDeactivate: []},
   {path:"**",pathMatch:"full",component: PageNotFoundComponent},
 ];

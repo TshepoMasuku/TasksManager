@@ -12,15 +12,15 @@
         >
       </div>
       <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched">
-        <small class="registerForm__error" *ngIf="registerForm.get('name')?.errors?.['required']">Enter Your Name</small>
-        <small class="registerForm__error" *ngIf="registerForm.get('password')?.errors?.['minlength']">
+        <small class="registerForm__errorMessages" *ngIf="registerForm.get('name')?.errors?.['required']">Enter Your Name</small>
+        <small class="registerForm__errorMessages" *ngIf="registerForm.get('password')?.errors?.['minlength']">
           Name can't be shorter than 2 characters!
         </small>
         <br *ngIf="registerForm.get('password')?.errors?.['minlength']">
-        <small class="registerForm__error" *ngIf="registerForm.get('password')?.errors?.['maxlength']">
+        <small class="registerForm__errorMessages" *ngIf="registerForm.get('password')?.errors?.['maxlength']">
           Name can't be longer than 32 characters!
         </small>
-        <small class="registerForm__error" *ngIf="registerForm.get('name')?.errors?.['pattern']">
+        <small class="registerForm__errorMessages" *ngIf="registerForm.get('name')?.errors?.['pattern']">
           Name must be Capitalized and have no number/special characters.
         </small>
       </div>
@@ -36,8 +36,8 @@
         >
       </div>
       <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
-        <small class="registerForm__error" *ngIf="registerForm.get('email')?.errors?.['required']">Enter email</small>
-        <small class="registerForm__error" *ngIf="registerForm.get('email')?.errors?.['email']">Invalid email</small>
+        <small class="registerForm__errorMessages" *ngIf="registerForm.get('email')?.errors?.['required']">Enter email</small>
+        <small class="registerForm__errorMessages" *ngIf="registerForm.get('email')?.errors?.['email']">Invalid email</small>
       </div>
     </div>
 
@@ -51,17 +51,17 @@
         >
       </div>
       <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
-        <small class="registerForm__error" *ngIf="registerForm.get('password')?.errors?.['required']">
+        <small class="registerForm__errorMessages" *ngIf="registerForm.get('password')?.errors?.['required']">
           Password is required!
         </small>
-        <small class="registerForm__error" *ngIf="registerForm.get('password')?.errors?.['minlength']">
+        <small class="registerForm__errorMessages" *ngIf="registerForm.get('password')?.errors?.['minlength']">
           Password should be longer than 8 characters!
         </small>
         <br *ngIf="registerForm.get('password')?.errors?.['minlength']">
-        <small class="registerForm__error" *ngIf="registerForm.get('password')?.errors?.['maxlength']">
+        <small class="registerForm__errorMessages" *ngIf="registerForm.get('password')?.errors?.['maxlength']">
           Password can't be longer than 99 characters!
         </small>
-        <small class="registerForm__error" *ngIf="registerForm.get('password')?.errors?.['pattern']">
+        <small class="registerForm__errorMessages" *ngIf="registerForm.get('password')?.errors?.['pattern']">
           Password must include at least 1 uppercase letter, 1 lowercase letter, 1 digit character and 1 special character.
         </small>
       </div>
@@ -77,18 +77,21 @@
         >
       </div>
       <div *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched">
-        <small class="registerForm__error" *ngIf="registerForm.get('confirmPassword')?.errors?.['required']">
+        <small class="registerForm__errorMessages" *ngIf="registerForm.get('confirmPassword')?.errors?.['required']">
           Confirmation Password is required!
         </small>
-        <small class="registerForm__error" *ngIf="registerForm.get('confirmPassword')?.errors?.['minlength']">
+        <small class="registerForm__errorMessages" *ngIf="registerForm.get('confirmPassword')?.errors?.['minlength']">
           Confirmation Password should match with the above Password!
         </small>
-        <small class="registerForm__error" *ngIf="registerForm.get('confirmPassword')?.errors?.['maxlength']">
+        <small class="registerForm__errorMessages" *ngIf="registerForm.get('confirmPassword')?.errors?.['maxlength']">
           Confirmation Password should match with the above Password!
         </small>
-        <small class="registerForm__error" *ngIf="registerForm.get('confirmPassword')?.errors?.['not_matching']">
+        <small class="registerForm__errorMessages" *ngIf="registerForm.get('confirmPassword')?.errors?.['not_matching']">
           Confirmation Password doesn't match with the above Password!
         </small>
+      </div>
+      <div>
+        <small class="registerForm__errorMessages" *ngIf="isUserRegistered">User is already registered!</small>
       </div>
     </div>
 
