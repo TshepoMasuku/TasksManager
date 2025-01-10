@@ -50,6 +50,7 @@ export class LoginComponent {
     this.currentUser = currentUser;
     const isUserRegistered = this.checkUserRegistered(this.currentUser);
     if (isUserRegistered) {
+      this.localStorageService.set('loggedUser', [this.currentUser]);
       this.goToTodoList();
     }
   }

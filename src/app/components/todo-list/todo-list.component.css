@@ -31,6 +31,19 @@
 }
 
 /* Create a new ToDo Task -- Section */
+.todoList__logoutBtnContainer {
+  width: 100vw;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.logoutBtn{
+  width: 33%;
+  max-width: 15rem;
+  margin-inline: auto;
+  border-radius: 0px !important;
+}
+
 .todoList__titleContainer {
   margin-block: 1.5rem;
   display: flex;

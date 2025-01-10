@@ -14,7 +14,7 @@ import { LocalStorageService } from '../../services/local-storage.service';
 export class RegistrationComponent {
   registerForm: FormGroup;
   isUserRegistered: boolean = false;
-  currentUser = {
+  currentUser: Object = {
     'name': '',
     'email': '',
     'password': '',
@@ -42,18 +42,6 @@ export class RegistrationComponent {
   
   ngOnInit() {
     this.users = this.localStorageService.get('users', this.users);
-    // const usersArr = [
-    //   {name: "Tshepo Masuku", email: "tshepomasuku000@gmail.com", password: "pp00!!lllD000"},
-    //   {name: "Tshepo", email: "tshepomasuku111@gmail.com", password: "pp00!!lllD111"},
-    //   {name: "Masuku", email: "tshepomasuku222@gmail.com", password: "pp00!!lllD222"},
-    //   {name: "Name Surname", email: "namesurname333@gmail.com", password: "pp00!!lllD333"},
-    //   {name: "Name", email: "namesurname444@gmail.com", password: "pp00!!lllD444"},
-    //   {name: "Surname", email: "namesurname555@gmail.com", password: "pp00!!lllD555"},
-    //   {name: "Yx", email: "Yx888@gmail.com", password: "Ppp0o0!!!888"},
-    //   {name: "Ea", email: "Ea999@gmail.com", password: "Ppp0o0!!!999"},
-    // ]
-    // this.users = usersArr;
-    // this.localStorageService.set('users', this.users);
   }
 
   signup() {
@@ -90,16 +78,17 @@ export class RegistrationComponent {
     this.router.navigate(["/todo-list"]);
   }
 
-  private cacheUserRegistration() {
+  cacheUserRegistration() {
     // Form Values, inputed by the User.
     const nameValue = this.registerForm.get('name')?.value;
     const emailValue = this.registerForm.get('email')?.value;
     const passwordValue = this.registerForm.get('password')?.value;
     const currentUser = {
-      // 'id': Date.now(),
+      'id': Date.now(),
       'name': nameValue,
       'email': emailValue,
       'password': passwordValue,
+      'todoItems': [],
     };
 
     // Caching/Saving User Credentials into the local storage.
@@ -108,6 +97,7 @@ export class RegistrationComponent {
     if(!isUserRegistered) {
       this.users.push(this.currentUser);
       this.localStorageService.set('users', this.users);
+      this.localStorageService.set('loggedUser', [this.currentUser]);
     }
   }
 

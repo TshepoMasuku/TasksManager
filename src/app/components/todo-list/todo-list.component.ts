@@ -5,7 +5,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { provideNativeDateAdapter, NativeDateAdapter, MatNativeDateModule } from '@angular/material/core';
-
+import { LocalStorageService } from '../../services/local-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-todo-list',
@@ -38,23 +39,25 @@ export class TodoListComponent {
   readonly minDate = new Date(this._currentYear, this._currentMonth, this._currentDay);
   readonly maxDate = new Date(this._currentYear + 1, 11, 31);
 
-  constructor() {}
+  constructor(private localStorageService:LocalStorageService, private router:Router) {}
+  
   ngOnInit() {
-    this.tasksArray = [
-      {
-        id: 'Task Created @ Mon Dec 09 2024 19:48:66',
-        taskTitle: 'Manage Tasks',
-        taskPriority: 'highPriority',
-        taskDueDate: 'Sat Dec 21 2024 11:11:11 GMT+0200 (South Africa Standard Time)',
-        showTaskEditForm: false
-      },{
-        id: 'Task Created @ Mon Dec 09 2024 19:48:99',
-        taskTitle: 'Check check!',
-        taskPriority: 'mediumPriority',
-        taskDueDate: 'Wed Dec 18 2024 22:22:22 GMT+0200 (South Africa Standard Time)',
-        showTaskEditForm: true
-      }
-    ];
+    const defaultArray =
+    [{
+      id: 'Task092024194866',
+      taskTitle: 'Manage Tasks',
+      taskPriority: 'highPriority',
+      taskDueDate: 'Sat Dec 21 2024 11:11:11 GMT+0200 (South Africa Standard Time)',
+      showTaskEditForm: false
+    }, {
+      id: 'Task092024194899',
+      taskTitle: 'Check check!',
+      taskPriority: 'mediumPriority',
+      taskDueDate: 'Wed Dec 18 2024 22:22:22 GMT+0200 (South Africa Standard Time)',
+      showTaskEditForm: true
+    }];
+    // this.tasksArray = defaultArray;
+    this.getCurrentUserTodoItems();
   }
 
   // Check if this Tracking Expression method is really needed.
@@ -64,7 +67,7 @@ export class TodoListComponent {
 
   addTask() {
     const currentTask = {
-      id: "Task Created @ " + Date(),
+      id: "Task" + Date.now(),
       taskTitle: this.taskTitle,
       taskPriority: this.taskPriority,
       taskDueDate: this.taskDueDate,
@@ -81,7 +84,6 @@ export class TodoListComponent {
     this.taskTitle = "";
     this.taskPriority = "";
     this.taskDueDate = "";
-    console.log('this.tasksArray :>> ', this.tasksArray);
   }
 
   deleteTask(task: any) {
@@ -148,5 +150,46 @@ export class TodoListComponent {
 
   taskDueDateChanged(event: any) {
     this.taskDueDateEdited = event.target.value;
+  }
+  
+  getCurrentUserTodoItems() {
+    // get all the users and the currentUser from local storage.
+    const allUsersArray = this.localStorageService.get('users', []);
+    const currentUserArray = this.localStorageService.get('loggedUser', []);
+    const currentUser = currentUserArray[0];
+
+    // get the TodoItems of the currentUser.
+    if(allUsersArray.length > 0 && currentUserArray.length > 0) {
+      for(let user of allUsersArray) {
+        if(user.email === currentUser.email) {
+          this.tasksArray = user.todoItems;
+          break;
+        }
+      }
+    }
+  }
+
+  cacheCurrentUserTodoItems() {
+    // get all the users and the currentUser from local storage.
+    const allUsersArray = this.localStorageService.get('users', []);
+    const currentUserArray = this.localStorageService.get('loggedUser', []);
+    const currentUser = currentUserArray[0];
+
+    // add TodoItems to currentUser and cache it on the localStorage.
+    if(allUsersArray.length > 0 && currentUserArray.length > 0) {
+      for(let user of allUsersArray) {
+        if(user.email === currentUser.email) {
+          user.todoItems = this.tasksArray;
+          this.localStorageService.set('users', allUsersArray);
+          break;
+        }
+      }
+    }
+  }
+
+  onLogoutUser() {
+    this.cacheCurrentUserTodoItems();
+    this.localStorageService.remove('loggedUser');
+    this.router.navigate(['login']);
   }
 }
