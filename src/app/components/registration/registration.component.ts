@@ -52,7 +52,7 @@ export class RegistrationComponent {
   }
   
   ngOnInit() {
-    this.readgetAllUsers().subscribe((data: any) => {
+    this.readAllUsers().subscribe((data: any) => {
       this.users = data;
       this.localStorageService.set('users', this.users);
     });
@@ -60,22 +60,35 @@ export class RegistrationComponent {
   }
 
   signup() {
-    // Initialize only the needed form controls in our method.
+    // Declare Form Controls or Values, in the method.
+    // const nameValue = this.registerForm.get('name')?.value;
+    // const emailValue = this.registerForm.get('email')?.value;
     // const passwordValue = this.registerForm.get('password')?.value;
     // const confirmPasswordControl = this.registerForm.get('confirmPassword');
+    const nameValue = this.registerForm.controls['name'].value;
+    const emailValue = this.registerForm.controls['email'].value;
     const passwordValue = this.registerForm.controls['password'].value;
     const confirmPasswordControl = this.registerForm.controls['confirmPassword'];
-    
+
     // Check if the user's input passwords do match.
     // If not, then add not_matching error in confirmPasswordControl.
     const isPasswordsMatch = this.checkPasswordsMatch(passwordValue, confirmPasswordControl.value);
-    if (!isPasswordsMatch) {
+    if(!isPasswordsMatch) {
       confirmPasswordControl.setErrors({...confirmPasswordControl.errors, not_matching: true});
+    } else {
+      const currentUser = {
+        'id': Date.now(),
+        'name': nameValue,
+        'email': emailValue,
+        'password': passwordValue,
+        'todoItems': [],
+      };
+      this.currentUser = currentUser;
+      // Also Check if the user isn't already registered.
+      this.checkUserRegistered();
     }
 
-    // Also Check if the user isn't already registered.
-    this.isUserRegistered = false;  // Reset isUserRegistered variable status first.
-    if (!this.isUserRegistered) {
+    if(!this.isUserRegistered) {
       this.cacheUserRegistration();
       this.goToTodoList();
     }
@@ -83,7 +96,7 @@ export class RegistrationComponent {
   
   checkPasswordsMatch(password: string, confirmPassword: string) {
     // method to compare user's input passwords.
-    return( password === confirmPassword && confirmPassword !== '' );
+    return( confirmPassword !== '' && confirmPassword === password );
   }
   
   goToSignup() {
@@ -94,43 +107,26 @@ export class RegistrationComponent {
   }
 
   cacheUserRegistration() {
-    // Form Values, inputed by the User.
-    // const nameValue = this.registerForm.get('name')?.value;
-    // const emailValue = this.registerForm.get('email')?.value;
-    // const passwordValue = this.registerForm.get('password')?.value;
-    const nameValue = this.registerForm.controls['name'].value;
-    const emailValue = this.registerForm.controls['email'].value;
-    const passwordValue = this.registerForm.controls['password'].value;
-    const currentUser = {
-      'id': Date.now(),
-      'name': nameValue,
-      'email': emailValue,
-      'password': passwordValue,
-      'todoItems': [],
-    };
-
     // Caching/Saving User Credentials into the local storage.
-    this.currentUser = currentUser;
-    const isUserRegistered = this.checkUserRegistered();
-    if(!isUserRegistered) {
-      this.users.push(this.currentUser);
-      this.localStorageService.set('users', this.users);
-      this.localStorageService.set('loggedUser', [this.currentUser]);
-      this.createCurrentUser().subscribe((data: any) => {});
-    }
+    this.users.push(this.currentUser);
+    this.localStorageService.set('users', this.users);
+    this.localStorageService.set('loggedUser', [this.currentUser]);
+    this.createCurrentUser().subscribe((data: any) => {});
   }
 
   checkUserRegistered(): boolean {
-    // Checks if a User is Registered.
+    // Method checks if a User is Registered.
+    this.isUserRegistered = false;  // This resets the variable.
     for(let user of this.users) {
-      if (user.email === this.currentUser.email) {
+      if(user.email === this.currentUser.email) {
         this.isUserRegistered = true;
+        return this.isUserRegistered;
       } 
     }
     return this.isUserRegistered;
   }
 
-  readgetAllUsers() {
+  readAllUsers() {
     return this.http.get(`${this.baseAPIurl}/users`);
   }
   createCurrentUser() {

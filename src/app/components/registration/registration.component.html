@@ -90,9 +90,8 @@
           Confirmation Password doesn't match with the above Password!
         </small>
       </div>
-      <div>
-        <!-- <small class="registerForm__errorMessages" *ngIf="isUserRegistered">User is already registered!</small> -->
-        <small class="registerForm__errorMessages" *ngIf="true">User is already registered!</small>
+      <div *ngIf="isUserRegistered">
+        <small class="registerForm__errorMessages">User is already registered!</small>
       </div>
     </div>
 

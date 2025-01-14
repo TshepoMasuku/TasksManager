@@ -159,6 +159,27 @@
       "email": "Test333@gmail.com",
       "password": "Ppp0o0!!!333",
       "todoItems": []
+    },
+    {
+      "id": 1736872491615,
+      "name": "Ok",
+      "email": "Okay222@gmail.com",
+      "password": "Ppp0o0!!!222",
+      "todoItems": []
+    },
+    {
+      "id": 1736873310107,
+      "name": "Tshepo Masuku",
+      "email": "tshepomasuku16@gmail.com",
+      "password": "pp00!!lllD16",
+      "todoItems": []
+    },
+    {
+      "id": 1736873375215,
+      "name": "Tshepo Masuku",
+      "email": "tshepomasuku16@gmail.com",
+      "password": "pp00!!lllD16",
+      "todoItems": []
     }
   ]
 }

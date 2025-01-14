@@ -14,8 +14,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  isUserRegistered: boolean = true;
-  currentUser: object = {
+  isUserNotRegistered: boolean = false;
+  currentUser: any = {
     'email': '',
     'password': '',
   };
@@ -63,8 +63,8 @@ export class LoginComponent {
 
     // Check if the user isn't already registered.
     this.currentUser = currentUser;
-    const isUserRegistered = this.checkUserRegistered(this.currentUser);
-    if (isUserRegistered) {
+    this.checkUserRegistered();
+    if(!this.isUserNotRegistered) {
       this.localStorageService.set('loggedUser', [this.currentUser]);
       this.goToTodoList();
     }
@@ -77,15 +77,16 @@ export class LoginComponent {
     this.router.navigate(["/todo-list"]);
   }
 
-  checkUserRegistered(currentUser: any): boolean {
-    // Checks if a User is Registered.
-    this.isUserRegistered = false;  // Reset isUserRegistered variable status first.
+  checkUserRegistered(): boolean {
+    // Method checks if a User is Registered.
+    this.isUserNotRegistered = true;  // This resets the variable.
     for(let user of this.users) {
-      if (user.email === currentUser.email && user.password === currentUser.password) {
-        this.isUserRegistered = true;
+      if(user.email === this.currentUser.email && user.password === this.currentUser.password) {
+        this.isUserNotRegistered = false;
+        return this.isUserNotRegistered;
       } 
     }
-    return this.isUserRegistered;
+    return this.isUserNotRegistered;
   }
 
   readAllUsers() {

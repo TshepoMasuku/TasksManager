@@ -40,8 +40,8 @@
           Password must include at least 1 uppercase letter, 1 lowercase letter, 1 digit character and 1 special character.
         </small>
       </div>
-      <div>
-        <small class="loginForm__errorMessages" *ngIf="!isUserRegistered">Invalid Email or Password</small>
+      <div *ngIf="isUserNotRegistered">
+        <small class="loginForm__errorMessages">Invalid Email or Password</small>
       </div>
     </div>
 
