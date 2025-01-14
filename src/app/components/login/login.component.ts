@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../../services/local-storage.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -20,11 +21,19 @@ export class LoginComponent {
   };
   users: any[] = [];
 
+  // This is the base URL of the json-server API.
+  baseAPIurl: string = 'http://localhost:3000';
+
   constructor(
     private localStorageService: LocalStorageService,
     private router:Router,
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    private http:HttpClient,
   ) {
+    this.loginForm = new FormGroup({
+      email: new FormControl(''),
+      password: new FormControl(''),
+    });
     this.loginForm = this.fb.group({
       email: ['', [Validators.required,Validators.email]],
       password: ['', [Validators.required,Validators.minLength(8),Validators.maxLength(99),
@@ -34,13 +43,19 @@ export class LoginComponent {
   }
   
   ngOnInit() {
+    this.readAllUsers().subscribe((data: any) => {
+      this.users = data;
+      this.localStorageService.set('users', this.users);
+    });
     this.users = this.localStorageService.get('users', this.users);
   }
 
   signin() {
     // Form Values, inputed by the User.
-    const emailValue = this.loginForm.get('email')?.value;
-    const passwordValue = this.loginForm.get('password')?.value;
+    // const emailValue = this.loginForm.get('email')?.value;
+    // const passwordValue = this.loginForm.get('password')?.value;
+    const emailValue = this.loginForm.controls['email'].value;
+    const passwordValue = this.loginForm.controls['password'].value;
     const currentUser = {
       'email': emailValue,
       'password': passwordValue,
@@ -71,5 +86,9 @@ export class LoginComponent {
       } 
     }
     return this.isUserRegistered;
+  }
+
+  readAllUsers() {
+    return this.http.get(`${this.baseAPIurl}/users`);
   }
 }

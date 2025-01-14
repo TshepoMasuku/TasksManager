@@ -10,14 +10,17 @@
   --color-grey: rgba(155, 151, 151, 0.6);
 }
 
-.bgTask-lowPriority {
+.bgTask--lowPriority {
   background-color : rgb(240, 220, 100) !important;
 }
-.bgTask-mediumPriority {
+.bgTask--mediumPriority {
   background-color : rgb(245, 180, 100) !important;
 }
-.bgTask-highPriority {
+.bgTask--highPriority {
   background-color: rgb(210, 88, 88) !important;
+}
+.bgTask--isTaskDone {
+  background-color: rgb(88, 88, 88) !important;
 }
 
 .hidden {
@@ -41,7 +44,6 @@
   width: 33%;
   max-width: 15rem;
   margin-inline: auto;
-  border-radius: 0px !important;
 }
 
 .todoList__titleContainer {
@@ -84,7 +86,6 @@
 
 .addTaskBtn {
   width: 35%;
-  border-radius: 0px !important;
 }
 
 .todoList__bottomInputContainer {
@@ -131,7 +132,7 @@
 }
 
 .task__titleContainer {
-  width: 65%;
+  width: 60%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -143,12 +144,15 @@
   font-size: 2rem;
   font-weight: 500;
 }
+.task__title--isTaskDone {
+  text-decoration: line-through;
+}
 
 .task__BtnContainer {
-  width: 35%;
+  width: 40%;
   min-width: 15rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 
@@ -159,7 +163,6 @@
   font-size: 1.25rem;
   font-weight: 300;
   color: white;
-  border-radius: 0.5rem;
 }
 .Btn:hover {
   color: black;
@@ -225,11 +228,9 @@ hr {
 
 .saveTaskBtn {
   width: 20%;
-  border-radius: 0px !important;
 }
 .cancelTaskBtn {
   width: 20%;
-  border-radius: 0px !important;
 }
 
 .taskEditForm__bottomInputContainer {

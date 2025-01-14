@@ -1,17 +1,18 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DatePipe, NgClass, NgFor, NgIf } from '@angular/common';
+import { DatePipe, NgClass, NgFor, NgIf, NgStyle } from '@angular/common';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { provideNativeDateAdapter, NativeDateAdapter, MatNativeDateModule } from '@angular/material/core';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-todo-list',
   standalone: true,
-  imports: [ FormsModule,NgFor,NgClass,NgIf,DatePipe,
+  imports: [ FormsModule,NgFor,NgClass,NgIf,NgStyle,DatePipe,
     MatNativeDateModule,MatFormFieldModule,MatInputModule,MatDatepickerModule,
   ],
   templateUrl: './todo-list.component.html',
@@ -25,6 +26,8 @@ export class TodoListComponent {
   taskPriority: string = "";
   taskDueDate: string = "";
   showTaskEditForm: boolean = false;
+  isTaskOverDue: boolean = false;
+  isTaskComplete: boolean = false;
 
   // These variables below, track & save new edited changes made to a TASK.
   taskTitleEdited: string = "";
@@ -39,28 +42,20 @@ export class TodoListComponent {
   readonly minDate = new Date(this._currentYear, this._currentMonth, this._currentDay);
   readonly maxDate = new Date(this._currentYear + 1, 11, 31);
 
-  constructor(private localStorageService:LocalStorageService, private router:Router) {}
+  // This is the base URL of the json-server API.
+  baseAPIurl: string = 'http://localhost:3000';
+
+  constructor(
+    private localStorageService:LocalStorageService,
+    private router:Router,
+    private http:HttpClient,
+  ) {}
   
   ngOnInit() {
-    const defaultArray =
-    [{
-      id: 'Task092024194866',
-      taskTitle: 'Manage Tasks',
-      taskPriority: 'highPriority',
-      taskDueDate: 'Sat Dec 21 2024 11:11:11 GMT+0200 (South Africa Standard Time)',
-      showTaskEditForm: false
-    }, {
-      id: 'Task092024194899',
-      taskTitle: 'Check check!',
-      taskPriority: 'mediumPriority',
-      taskDueDate: 'Wed Dec 18 2024 22:22:22 GMT+0200 (South Africa Standard Time)',
-      showTaskEditForm: true
-    }];
-    // this.tasksArray = defaultArray;
     this.getCurrentUserTodoItems();
   }
 
-  // Check if this Tracking Expression method is really needed.
+  // Tracking Expression method.
   trackByTaskId(index: number, task: any) {
     return task.id;
   };
@@ -72,9 +67,12 @@ export class TodoListComponent {
       taskPriority: this.taskPriority,
       taskDueDate: this.taskDueDate,
       showTaskEditForm: this.showTaskEditForm,
+      isTaskOverDue: this.isTaskOverDue,
+      isTaskComplete: this.isTaskComplete,
     };
     if (this.taskTitle.trim() !== "") {
       this.tasksArray.push(currentTask);
+      this.cacheCurrentUserTodoItems();
       this.clearAddTaskInputs();
     }
   }
@@ -91,11 +89,18 @@ export class TodoListComponent {
       if (item.id !== task.id) return item
     });
     this.tasksArray = newTasksArray;
+    this.cacheCurrentUserTodoItems();
   }
 
   editTask(task: any) {
     // This hides/closes the Task Edit Form.
     task.showTaskEditForm = !task.showTaskEditForm;
+  }
+
+  markTaskComplete(task: any) {
+    // This toggles the isTaskComplete variable to show Task Completion!.
+    task.isTaskComplete = !task.isTaskComplete;
+    this.cacheCurrentUserTodoItems();
   }
 
   cancelEditedTask(task: any) {
@@ -130,6 +135,7 @@ export class TodoListComponent {
       }
     }
     this.tasksArray = newTasksArray;
+    this.cacheCurrentUserTodoItems();
     this.clearTaskEditFormInputs();
   }
 
@@ -181,15 +187,32 @@ export class TodoListComponent {
         if(user.email === currentUser.email) {
           user.todoItems = this.tasksArray;
           this.localStorageService.set('users', allUsersArray);
-          break;
+          this.updateCurrentUserTodoItems(user).subscribe((data: any) => {});
         }
       }
     }
   }
 
   onLogoutUser() {
-    this.cacheCurrentUserTodoItems();
     this.localStorageService.remove('loggedUser');
     this.router.navigate(['login']);
+  }
+
+  checkTaskOverDue(taskDueDate: string) {
+    // This resets the variable this.isTaskOverDue to ensure Method reusability.
+    this.isTaskOverDue = false;
+    // This converts this.minDate into a date format that's similar to taskDueDate: string.
+    const dateToday = this.minDate.toISOString();
+
+    if(taskDueDate === '') return this.isTaskOverDue;
+    if(taskDueDate < dateToday) {
+      this.isTaskOverDue = true;
+      return this.isTaskOverDue;
+    };
+    return this.isTaskOverDue;
+  }
+
+  updateCurrentUserTodoItems(user: any) {
+    return this.http.put(`${this.baseAPIurl}/users/${user.id}`, user);
   }
 }

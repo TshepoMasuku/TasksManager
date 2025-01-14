@@ -1,0 +1,164 @@
+{
+  "users": [
+    {
+      "id": "1736518403231",
+      "name": "Test",
+      "email": "test@gmail.com",
+      "password": "Ppp0o0!!!000",
+      "todoItems": [
+        {
+          "id": "Task1736523900653",
+          "taskTitle": "mmm",
+          "taskPriority": "",
+          "taskDueDate": "",
+          "showTaskEditForm": false
+        },
+        {
+          "id": "Task1736523895065",
+          "taskTitle": "vvvvv",
+          "taskPriority": "",
+          "taskDueDate": "",
+          "showTaskEditForm": false
+        },
+        {
+          "id": "Task1736523905265",
+          "taskTitle": "zzzz",
+          "taskPriority": "",
+          "taskDueDate": "",
+          "showTaskEditForm": false
+        }
+      ]
+    },
+    {
+      "id": "1736519578018",
+      "name": "Sign Up",
+      "email": "SignUp@gmail.com",
+      "password": "bBo00o@@0o",
+      "todoItems": []
+    },
+    {
+      "id": "1736524365879",
+      "name": "Tshepo Masuku",
+      "email": "tshepomasuku16@gmail.com",
+      "password": "pp00!!lllD16",
+      "todoItems": [
+        {
+          "id": "Task1736671962137",
+          "taskTitle": "Finish Task ASAP!",
+          "taskPriority": "highPriority",
+          "taskDueDate": "",
+          "showTaskEditForm": false
+        },
+        {
+          "id": "Task1736802394896",
+          "taskTitle": "Tasks Manager",
+          "taskPriority": "mediumPriority",
+          "taskDueDate": "",
+          "showTaskEditForm": false,
+          "isTaskComplete": false
+        }
+      ]
+    },
+    {
+      "id": "1736671104949",
+      "name": "Name Surname",
+      "email": "namesurname333@gmail.com",
+      "password": "Ppp0o0!!!333",
+      "todoItems": [
+        {
+          "id": "Task1736671145781",
+          "taskTitle": "Task 2",
+          "taskPriority": "mediumPriority",
+          "taskDueDate": "",
+          "showTaskEditForm": false
+        },
+        {
+          "id": "Task1736671120384",
+          "taskTitle": "Task 0",
+          "taskPriority": "",
+          "taskDueDate": "",
+          "showTaskEditForm": false
+        },
+        {
+          "id": "Task1736671134476",
+          "taskTitle": "Task 1",
+          "taskPriority": "lowPriority",
+          "taskDueDate": "",
+          "showTaskEditForm": false
+        },
+        {
+          "id": "Task1736671157921",
+          "taskTitle": "Task 3",
+          "taskPriority": "highPriority",
+          "taskDueDate": "",
+          "showTaskEditForm": false
+        }
+      ]
+    },
+    {
+      "id": "1736785293574",
+      "name": "Del",
+      "email": "Delete777@gmail.com",
+      "password": "pp00!!lllD",
+      "todoItems": [
+        {
+          "id": "Task0101010101",
+          "taskTitle": "Json-Server",
+          "taskPriority": "lowPriority",
+          "taskDueDate": "2025-01-30T22:00:00.000Z",
+          "showTaskEditForm": false,
+          "isTaskComplete": true
+        },
+        {
+          "id": "Task1010101010",
+          "taskTitle": "json-server db.json",
+          "taskPriority": "highPriority",
+          "taskDueDate": "2025-01-14T22:00:00.000Z",
+          "showTaskEditForm": false,
+          "isTaskComplete": true
+        },
+        {
+          "id": "Task1736809361146",
+          "taskTitle": "*Task is Not Over Due",
+          "taskPriority": "mediumPriority",
+          "taskDueDate": "2026-09-08T22:00:00.000Z",
+          "showTaskEditForm": false,
+          "isTaskOverDue": true,
+          "isTaskComplete": true
+        },
+        {
+          "id": "Task1736811976308",
+          "taskTitle": "*Task is Over Due",
+          "taskPriority": "mediumPriority",
+          "taskDueDate": "2024-12-31T22:00:00.000Z",
+          "showTaskEditForm": false,
+          "isTaskOverDue": false,
+          "isTaskComplete": false
+        },
+        {
+          "id": "Task1736859525229",
+          "taskTitle": "*No Due Date",
+          "taskPriority": "",
+          "taskDueDate": "",
+          "showTaskEditForm": false,
+          "isTaskOverDue": false,
+          "isTaskComplete": false
+        }
+      ]
+    },
+    {
+      "id": "1736786312156",
+      "name": "EA",
+      "email": "Ea999@gmail.com",
+      "password": "Ppp0o0!!!999",
+      "todoItems": []
+    },
+    {
+      "id": "1736787954177",
+      "name": "Tester",
+      "email": "Test333@gmail.com",
+      "password": "Ppp0o0!!!333",
+      "todoItems": []
+    }
+  ]
+}

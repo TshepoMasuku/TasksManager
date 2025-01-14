@@ -20,7 +20,10 @@
       </select>
       <mat-form-field class="DatePickerFormField">
         <mat-label>Task Due Date</mat-label>
-        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker_default" [(ngModel)]="taskDueDate">
+        <input
+          matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker_default"
+          [(ngModel)]="taskDueDate" [placeholder]="minDate.toLocaleDateString()"
+        >
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker_default"></mat-datepicker-toggle>
         <mat-datepicker #picker_default></mat-datepicker>
@@ -30,15 +33,20 @@
 
   <div [ngClass]="(tasksArray.length === 0) ? ('hidden') : ('todoList__tasksContainer')">
     <div 
-      *ngFor="let task of tasksArray.reverse(); let ndx = index; trackBy: trackByTaskId" 
-      id="TASK{{ndx}}" class="task__Container bgTask-{{task.taskPriority}}"
+      *ngFor="let task of tasksArray.reverse(); let ndx = index; trackBy: trackByTaskId"
+      id="TASK{{ndx}}" class="task__Container bgTask--{{task.taskPriority}}"
+      [ngClass]="(checkTaskOverDue(task.taskDueDate)) ? 'bgTask--isTaskDone': ''"
     >
       <div *ngIf="!task.showTaskEditForm">
         <div class="task__topSection">
           <div class="task__titleContainer">
-            <div class="task__title">{{task.taskTitle}}</div>
+            <div class="task__title" [ngClass]="(task.isTaskComplete) ? 'task__title--isTaskDone': ''">
+            <!-- <div class="task__title" [ngStyle]="text-decoration: line-through"> -->
+              {{task.taskTitle}}
+            </div>
           </div>
           <div class="task__BtnContainer">
+            <button class="Btn Btn--blue" (click)="markTaskComplete(task)">Done!</button>
             <button class="Btn Btn--blue" (click)="editTask(task)">Edit</button>
             <button class="Btn Btn--red" (click)="deleteTask(task)">Delete</button>
           </div>
