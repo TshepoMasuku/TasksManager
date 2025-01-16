@@ -21,7 +21,7 @@
       <div class="loginForm__input">
         <label class="loginForm__inputLabel">Password</label>
         <input
-          class="loginForm__inputField" id="password" formControlName="password" type="password--"
+          class="loginForm__inputField" id="password" formControlName="password" type="password"
           [ngClass]="(loginForm.get('password')?.invalid && loginForm.get('password')?.touched) ?
             ('inputField--hasError') : ('inputField--noError')"
         >

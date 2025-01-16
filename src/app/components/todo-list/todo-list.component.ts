@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DatePipe, NgClass, NgFor, NgIf, NgStyle } from '@angular/common';
+import { DatePipe, NgClass, NgFor, NgIf } from '@angular/common';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -12,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-todo-list',
   standalone: true,
-  imports: [ FormsModule,NgFor,NgClass,NgIf,NgStyle,DatePipe,
+  imports: [ FormsModule,NgFor,NgClass,NgIf,DatePipe,
     MatNativeDateModule,MatFormFieldModule,MatInputModule,MatDatepickerModule,
   ],
   templateUrl: './todo-list.component.html',

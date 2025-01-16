@@ -7,34 +7,42 @@
       "password": "Ppp0o0!!!000",
       "todoItems": [
         {
-          "id": "Task1736523900653",
-          "taskTitle": "mmm",
-          "taskPriority": "",
+          "id": "Task1737064340927",
+          "taskTitle": "High Priority Task",
+          "taskPriority": "highPriority",
           "taskDueDate": "",
-          "showTaskEditForm": false
+          "showTaskEditForm": false,
+          "isTaskOverDue": false,
+          "isTaskComplete": false
         },
         {
-          "id": "Task1736523895065",
-          "taskTitle": "vvvvv",
-          "taskPriority": "",
+          "id": "Task1737064327414",
+          "taskTitle": "Medium Priority Task",
+          "taskPriority": "mediumPriority",
           "taskDueDate": "",
-          "showTaskEditForm": false
+          "showTaskEditForm": false,
+          "isTaskOverDue": false,
+          "isTaskComplete": false
         },
         {
-          "id": "Task1736523905265",
-          "taskTitle": "zzzz",
-          "taskPriority": "",
+          "id": "Task1737064293448",
+          "taskTitle": "Low Priority Task",
+          "taskPriority": "lowPriority",
           "taskDueDate": "",
-          "showTaskEditForm": false
+          "showTaskEditForm": false,
+          "isTaskOverDue": false,
+          "isTaskComplete": false
+        },
+        {
+          "id": "Task1737063845113",
+          "taskTitle": "Task is Complete/Done",
+          "taskPriority": "",
+          "taskDueDate": "2025-01-30T22:00:00.000Z",
+          "showTaskEditForm": false,
+          "isTaskOverDue": false,
+          "isTaskComplete": true
         }
       ]
-    },
-    {
-      "id": "1736519578018",
-      "name": "Sign Up",
-      "email": "SignUp@gmail.com",
-      "password": "bBo00o@@0o",
-      "todoItems": []
     },
     {
       "id": "1736524365879",
@@ -44,17 +52,20 @@
       "todoItems": [
         {
           "id": "Task1736671962137",
-          "taskTitle": "Finish Task ASAP!",
+          "taskTitle": "Finish Project ASAP!",
           "taskPriority": "highPriority",
           "taskDueDate": "",
-          "showTaskEditForm": false
+          "showTaskEditForm": false,
+          "isTaskOverDue": false,
+          "isTaskComplete": false
         },
         {
           "id": "Task1736802394896",
-          "taskTitle": "Tasks Manager",
+          "taskTitle": "Tasks Manager App",
           "taskPriority": "mediumPriority",
           "taskDueDate": "",
           "showTaskEditForm": false,
+          "isTaskOverDue": false,
           "isTaskComplete": false
         }
       ]
@@ -66,32 +77,31 @@
       "password": "Ppp0o0!!!333",
       "todoItems": [
         {
-          "id": "Task1736671145781",
-          "taskTitle": "Task 2",
-          "taskPriority": "mediumPriority",
-          "taskDueDate": "",
-          "showTaskEditForm": false
-        },
-        {
-          "id": "Task1736671120384",
-          "taskTitle": "Task 0",
+          "id": "Task1736859525229",
+          "taskTitle": "Task has no Due Date",
           "taskPriority": "",
           "taskDueDate": "",
-          "showTaskEditForm": false
+          "showTaskEditForm": false,
+          "isTaskOverDue": false,
+          "isTaskComplete": false
         },
         {
-          "id": "Task1736671134476",
-          "taskTitle": "Task 1",
-          "taskPriority": "lowPriority",
-          "taskDueDate": "",
-          "showTaskEditForm": false
+          "id": "Task1736811976308",
+          "taskTitle": "Task is Over Due",
+          "taskPriority": "",
+          "taskDueDate": "2024-12-31T22:00:00.000Z",
+          "showTaskEditForm": false,
+          "isTaskOverDue": true,
+          "isTaskComplete": false
         },
         {
-          "id": "Task1736671157921",
-          "taskTitle": "Task 3",
-          "taskPriority": "highPriority",
-          "taskDueDate": "",
-          "showTaskEditForm": false
+          "id": "Task1736809361146",
+          "taskTitle": "Task isn't Over Due",
+          "taskPriority": "",
+          "taskDueDate": "2026-09-08T22:00:00.000Z",
+          "showTaskEditForm": false,
+          "isTaskOverDue": false,
+          "isTaskComplete": false
         }
       ]
     },
@@ -107,6 +117,7 @@
           "taskPriority": "lowPriority",
           "taskDueDate": "2025-01-30T22:00:00.000Z",
           "showTaskEditForm": false,
+          "isTaskOverDue": false,
           "isTaskComplete": true
         },
         {
@@ -115,6 +126,7 @@
           "taskPriority": "highPriority",
           "taskDueDate": "2025-01-14T22:00:00.000Z",
           "showTaskEditForm": false,
+          "isTaskOverDue": false,
           "isTaskComplete": true
         },
         {
@@ -145,41 +157,6 @@
           "isTaskComplete": false
         }
       ]
-    },
-    {
-      "id": "1736786312156",
-      "name": "EA",
-      "email": "Ea999@gmail.com",
-      "password": "Ppp0o0!!!999",
-      "todoItems": []
-    },
-    {
-      "id": "1736787954177",
-      "name": "Tester",
-      "email": "Test333@gmail.com",
-      "password": "Ppp0o0!!!333",
-      "todoItems": []
-    },
-    {
-      "id": 1736872491615,
-      "name": "Ok",
-      "email": "Okay222@gmail.com",
-      "password": "Ppp0o0!!!222",
-      "todoItems": []
-    },
-    {
-      "id": 1736873310107,
-      "name": "Tshepo Masuku",
-      "email": "tshepomasuku16@gmail.com",
-      "password": "pp00!!lllD16",
-      "todoItems": []
-    },
-    {
-      "id": 1736873375215,
-      "name": "Tshepo Masuku",
-      "email": "tshepomasuku16@gmail.com",
-      "password": "pp00!!lllD16",
-      "todoItems": []
     }
   ]
 }
