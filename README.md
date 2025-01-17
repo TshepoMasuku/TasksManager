@@ -1,4 +1,4 @@
-# Tasks Manager
+# [Tasks Manager](https://tshepomasuku.github.io/TasksManager/)
 
 ## Table of Contents
 
