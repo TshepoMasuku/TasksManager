@@ -26,11 +26,11 @@ This is a To Do List App with some basic functionalities called Task Manager bui
 
 ## Screenshoots
 
-### Signin Screen
+### [Signin Screen](https://tshepomasuku.github.io/TasksManager/login)
 
 ![Signin Screen](./public/assets/Signin_screenshoot.png)
 
-### Signup Screen
+### [Signup Screen](https://tshepomasuku.github.io/TasksManager/register)
 
 ![Signup Screen](./public/assets/Signup_screenshoot.png)
 
