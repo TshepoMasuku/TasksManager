@@ -22,7 +22,7 @@ This is a To Do List App with some basic functionalities called Task Manager bui
 
 ## Screenshoots
 
-[Signin Screen](./public/assets/Signin_screenshoot.png)
-[Signup Screen](./public/assets/Signup_screenshoot.png)
-[Home Screen#1](./public/assets/Home_screenshoot#1.png)
-[Home Screen#2](./public/assets/Home_screenshoot#2.png)
+![Signin Screen](./public/assets/Signin_screenshoot.png)
+![Signup Screen](./public/assets/Signup_screenshoot.png)
+![Home Screen#1](./public/assets/Home_screenshoot#1.png)
+![Home Screen#2](./public/assets/Home_screenshoot#2.png)
