@@ -1,15 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Bokor&display=swap');
-
+/*    */
 .registerForm__page {
   height: 100vh;
-  width: 100vw;
 }
 
 .registerForm {
   height: max-content;
   width: 25rem;
   padding: 1rem;
-  margin-top: 12.5rem;
+  margin-block: 12.5rem;
   margin-inline: auto;
   text-align: center;
   background-color: rgba(155, 151, 151, 0.6);
@@ -96,4 +95,27 @@
   margin: 1.5rem auto;
   font-size: 1.25rem;
   font-weight: 300;
+}
+
+/* Media Queries for the Register Form */
+@media only screen and (max-width: 500px) {
+  .registerForm__page {
+    height: max-content;
+  }
+  .registerForm {
+    width: auto;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+  }
+  .registerForm__input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .registerForm__inputLabel {
+    width: 80%;
+  }
+  .registerForm__inputField {
+    width: 80%;
+  }
 }
