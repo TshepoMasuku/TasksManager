@@ -97,3 +97,26 @@
   font-size: 1.25rem;
   font-weight: 300;
 }
+
+/* Media Queries for the Login Form */
+@media only screen and (max-width: 500px) {
+  .loginForm__page {
+    height: max-content;
+  }
+  .loginForm {
+    width: auto;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+  }
+  .loginForm__input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .loginForm__inputLabel {
+    width: 80%;
+  }
+  .loginForm__inputField {
+    width: 80%;
+  }
+}

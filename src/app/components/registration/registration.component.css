@@ -97,3 +97,26 @@
   font-size: 1.25rem;
   font-weight: 300;
 }
+
+/* Media Queries for the Register Form */
+@media only screen and (max-width: 500px) {
+  .registerForm__page {
+    height: max-content;
+  }
+  .registerForm {
+    width: auto;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+  }
+  .registerForm__input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .registerForm__inputLabel {
+    width: 80%;
+  }
+  .registerForm__inputField {
+    width: 80%;
+  }
+}
