@@ -2,13 +2,14 @@
   <div class="todoList__logoutBtnContainer">
     <button class="Btn Btn--blue logoutBtn" (click)="onLogoutUser()">Sign Out</button>
   </div>
+
   <div class="todoList__titleContainer">
     <h2 class="todoList__title">Task Manager</h2>
   </div>
   
   <div class="todoList__addTaskContainer">
     <div class="todoList__topInputContainer">
-      <input type="text" placeholder="Enter a task here!" [(ngModel)]="taskTitle" class="todoList__textInput">
+      <input type="text" placeholder="Type your task here!" [(ngModel)]="taskTitle" class="todoList__textInput">
       <button type="submit" class="Btn Btn--blue addTaskBtn" (click)="addTask()">Add</button>
     </div>
     <div class="todoList__bottomInputContainer">
@@ -18,7 +19,7 @@
         <option value="mediumPriority">Medium</option>
         <option value="highPriority">High</option>
       </select>
-      <mat-form-field class="DatePickerFormField">
+      <mat-form-field class="DatePickerFormFieldAddTask">
         <mat-label>Task Due Date</mat-label>
         <input
           matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker_default"
@@ -30,7 +31,7 @@
       </mat-form-field>
     </div>
   </div>
-
+  
   <div [ngClass]="(tasksArray.length === 0) ? ('hidden') : ('todoList__tasksContainer')">
     <div 
       *ngFor="let task of tasksArray.reverse(); let ndx = index; trackBy: trackByTaskId"
@@ -45,7 +46,7 @@
             </div>
           </div>
           <div class="task__BtnContainer">
-            <button class="Btn Btn--blue" (click)="markTaskComplete(task)">Done!</button>
+            <button class="Btn Btn--green" (click)="markTaskComplete(task)">Done!</button>
             <button class="Btn Btn--blue" (click)="editTask(task)">Edit</button>
             <button class="Btn Btn--red" (click)="deleteTask(task)">Delete</button>
           </div>
@@ -59,7 +60,8 @@
         </div>
       </div>
 
-      <div *ngIf="task.showTaskEditForm" class="taskEditForm__Container">
+      <div *ngIf="true" class="taskEditForm__Container">
+      <!-- <div *ngIf="task.showTaskEditForm" class="taskEditForm__Container"> -->
         <div class="taskEditForm__topInputContainer">
           <input
             type="text"
@@ -68,25 +70,27 @@
             (change)="taskTitleChanged($event)"
             class="taskEditForm__editTaskTitle"
           >
-          <button type="submit" class="Btn Btn--blue saveTaskBtn" (click)="saveEditedTask(task)">Save</button>
-          <button class="Btn Btn--red cancelTaskBtn" (click)="cancelEditedTask(task)">Cancel</button>
+          <div class="taskEditForm__BtnContainer">
+            <button type="submit" class="Btn Btn--blue saveTaskBtn" (click)="saveEditedTask(task)">Save</button>
+            <button type="reset" class="Btn Btn--red cancelTaskBtn" (click)="cancelEditedTask(task)">Cancel</button>
+          </div>
         </div>
         <div class="taskEditForm__bottomInputContainer">
-          <select class="chooseTaskPriority" value={{task.taskPriority}} (change)="taskPriorityChanged($event)">
+          <select class="chooseTaskEditPriority" value={{task.taskPriority}} (change)="taskPriorityChanged($event)">
             <option value="" disabled selected>Choose Task Priority...</option>
             <option value="lowPriority">Low</option>
             <option value="mediumPriority">Medium</option>
             <option value="highPriority">High</option>
           </select>
-          <mat-form-field class="DatePickerFormField">
-            <mat-label>Task Due Date</mat-label>
-            <input 
+          <mat-form-field class="DatePickerFormFieldEditTask">
+            <mat-label class="fontStyling">Task Due Date</mat-label>
+            <input class="fontStyling"
               matInput [matDatepicker]="pickerP1"
               [min]="minDate" [max]="maxDate"
               value="{{ task.taskDueDate | date: 'M/d/yyyy' }}"
               (dateChange)="taskDueDateChanged($event)"
             >
-            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-hint class="fontStyling">MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="pickerP1"></mat-datepicker-toggle>
             <mat-datepicker #pickerP1></mat-datepicker>
             <!-- #picker || #ndx || #picker{{task.id|idx}} || <input value="" not working/> -->

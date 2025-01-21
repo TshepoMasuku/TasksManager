@@ -12,7 +12,7 @@
         >
       </div>
       <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched">
-        <small class="registerForm__errorMessages" *ngIf="registerForm.get('name')?.errors?.['required']">Enter Your Name</small>
+        <small class="registerForm__errorMessages" *ngIf="registerForm.get('name')?.errors?.['required']">Enter your name</small>
         <small class="registerForm__errorMessages" *ngIf="registerForm.get('password')?.errors?.['minlength']">
           Name can't be shorter than 2 characters!
         </small>

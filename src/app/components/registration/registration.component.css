@@ -59,15 +59,14 @@
   width: 100%;
 }
 .registerBtn {
-  padding-block: 0.5rem;
-  padding-inline: 1rem;
+  padding: 0.5rem 1rem;
   margin: 1rem;
   font-size: 1.25rem;
   font-weight: 300;
-  background-color: rgb(3, 40, 252);
   color: white;
-  border: 0.25rem solid rgb(3, 40, 252);
   border-radius: 0.5rem;
+  background-color: rgb(3, 40, 252);
+  border: 0.25rem solid rgb(3, 40, 252);
 }
 
 .registerBtn:hover {
@@ -78,22 +77,21 @@
 }
 
 .registerBtn--inActive {
-  padding-block: 0.5rem;
-  padding-inline: 1rem;
+  padding: 0.5rem 1rem;
   margin: 1rem;
   font-size: 1.25rem;
   font-weight: 300;
-  background-color: rgb(147, 156, 203);
   color: white;
+  background-color: rgb(147, 156, 203);
   border: 0.15rem solid rgb(3, 40, 252);
   border-radius: 0.5rem;
 }
 
 .registerForm__alternative {
+  width: 7.5rem;
+  margin: 1.5rem auto;
   cursor: pointer;
   color: rgb(3, 40, 252);
-  width: 150px;
-  margin: 1.5rem auto;
   font-size: 1.25rem;
   font-weight: 300;
 }
@@ -108,6 +106,10 @@
     margin-top: 5rem;
     margin-bottom: 5rem;
   }
+  .registerForm__title {
+    margin-block: 1.5rem;
+    font-size: 3rem;
+  }
   .registerForm__input {
     display: flex;
     flex-direction: column;
@@ -115,8 +117,16 @@
   }
   .registerForm__inputLabel {
     width: 80%;
+    font-size: 0.9rem;
   }
   .registerForm__inputField {
     width: 80%;
+  }
+  .registerBtn, 
+  .registerBtn--inActive {
+    font-size: 1rem;
+  }
+  .registerForm__alternative {
+    font-size: 1rem;
   }
 }
