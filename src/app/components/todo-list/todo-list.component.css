@@ -251,7 +251,7 @@ hr {
 }
 
 
-/* Media Queries for ToDo List Route */
+/* Media Queries for ToDo List Component & Route */
 @media only screen and (max-width: 990px) {
   /* Displayed User's Tasks Section */
   .todoList__tasksContainer {
@@ -265,11 +265,6 @@ hr {
     padding: 0.25rem;
     margin: 0.5rem auto;
     border-radius: 0.25rem;
-  }
-  .task__topSection {
-    padding: 0.25rem;
-    display: flex;
-    flex-direction: column;
   }
   .task__titleContainer {
     width: 100%;
@@ -296,6 +291,8 @@ hr {
   .deadline__label {
     margin-right: 0;
   }
+}
+@media only screen and (max-width: 900px) {
   /* ToDo List Task: Edit Form. Section */
   .taskEditForm__Container {
     width: 95%;
@@ -335,6 +332,13 @@ hr {
   .mat-mdc-form-field-input-control.mat-mdc-form-field-input-control,
   .fontStyling {
     font-size: 0.75rem;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .task__topSection {
+    padding: 0.25rem;
+    display: flex;
+    flex-direction: column;
   }
 }
 @media only screen and (max-width: 668px) {
